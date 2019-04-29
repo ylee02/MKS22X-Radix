@@ -1,3 +1,4 @@
+import java.util.Arrays;
 public class RadixSort {
   public static void radixsort(int[]data){
     MyLinkedList<Integer>[] buckets = new MyLinkedList[20];
@@ -25,7 +26,7 @@ public class RadixSort {
 
     while (curr <= length) {
       for (int i = 0; i < temp.size(); i++) {
-        int num = temp.getData(i);
+        int num = temp.get(i);
         int digit = (Math.abs(num) % (int)Math.pow(10, curr)) / (int)Math.pow(10, curr - 1);
         if (num < 0) {
           buckets[9 - digit].add(num);
@@ -42,8 +43,14 @@ public class RadixSort {
     }
 
     for (int i = 0; i < temp.size(); i++ ) {
-      data[i] = temp.getData(i);
+      data[i] = temp.get(i);
     }
 
+  }
+
+  public static void main(String[] args) {
+    int[] test = {10, 2, 3, 421, 51, 24, 356, 12, 52, 13};
+    radixsort(test);
+    System.out.println(Arrays.toString(test));
   }
 }

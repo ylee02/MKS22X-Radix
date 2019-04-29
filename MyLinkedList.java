@@ -56,7 +56,7 @@ public class MyLinkedList<E> {
     return size;
   }
 
-  public boolean add(int value) {
+  public boolean add(E value) {
     if (size == 0) {
       start = new Node(value);
       end = start;
@@ -87,10 +87,10 @@ public class MyLinkedList<E> {
       throw new NullPointerException("Invalid index");
     }
     for (int i = 0; i <= index; i++) {
-      current = current.next();
+      currentN = currentN.next();
     }
-    E temp = current.getData();
-    current.setData(value);
+    E temp = currentN.getData();
+    currentN.setData(value);
     return temp;
   }
 
@@ -179,5 +179,6 @@ public class MyLinkedList<E> {
       end = data.end;
       size = size() + data.size();
     }
+    return this;
   }
 }

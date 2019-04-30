@@ -22,8 +22,13 @@ public class RadixSort {
         buckets[10 + (Math.abs(i) % 10)].add(i);
       }
     }
-    int curr = 2;
-
+    int curr = 1;
+	for (MyLinkedList<Integer> bucket : buckets) {
+        temp.conjoin(bucket);
+        bucket.clear();
+		
+    }
+	
     while (curr <= length) {
       for (int i = 0; i < temp.size(); i++) {
         int num = temp.get(i);
@@ -48,9 +53,5 @@ public class RadixSort {
 
   }
 
-  public static void main(String[] args) {
-    int[] test = {10, 2, 3, 421, 51, 24, 356, 12, 52, 13};
-    radixsort(test);
-    System.out.println(Arrays.toString(test));
-  }
+  
 }

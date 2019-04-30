@@ -75,7 +75,7 @@ public class MyLinkedList<E> {
       throw new NullPointerException("Invalid index");
     }
     Node current = start;
-    for (int i = 0; i <= index; i++) {
+    for (int i = 0; i < index; i++) {
       current = current.next();
     }
 
@@ -158,7 +158,10 @@ public class MyLinkedList<E> {
       str += current.getData() + ", ";
       current = current.next();
     }
-    return str + "]";
+	if (str.length() > 3) {
+		str = str.substring(0, str.length() - 2);
+    }
+	return str + "]";
   }
 
   public void clear() {
@@ -173,12 +176,23 @@ public class MyLinkedList<E> {
       start = data.start;
       end = data.end;
       size = data.size();
-    } if (data.start != null) {
+    } else if (data.start != null) {
       end.setNext(data.start);
       data.start.setPrev(end);
       end = data.end;
       size = size() + data.size();
     }
     return this;
+  }
+  
+  public static void main(String[] args) {
+	MyLinkedList temp = new MyLinkedList();
+	temp.add(1);
+	temp.add(2);
+	temp.add(3);
+	System.out.println(temp);
+	System.out.println(temp.size());
+	System.out.println(temp.get(0));
+	
   }
 }

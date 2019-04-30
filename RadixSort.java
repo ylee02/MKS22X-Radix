@@ -1,4 +1,4 @@
-import java.util.Arrays;
+import java.util.*;
 public class RadixSort {
   public static void radixsort(int[]data){
     MyLinkedList<Integer>[] buckets = new MyLinkedList[20];
@@ -14,7 +14,6 @@ public class RadixSort {
       }
     }
     int length = String.valueOf(max).length();
-
     for (int i : data) {
       if (i < 0) {
         buckets[9 - (Math.abs(i) % 10)].add(i);
@@ -23,12 +22,12 @@ public class RadixSort {
       }
     }
     int curr = 1;
-	for (MyLinkedList<Integer> bucket : buckets) {
+    for (MyLinkedList<Integer> bucket : buckets) {
         temp.conjoin(bucket);
         bucket.clear();
-		
+
     }
-	
+
     while (curr <= length) {
       for (int i = 0; i < temp.size(); i++) {
         int num = temp.get(i);
@@ -52,6 +51,15 @@ public class RadixSort {
     }
 
   }
+  public static void main(String[] args) {
+    int[] temp = new int[100];
+    Random rand = new Random();
+    for (int i =0; i < 100; i++) {
+      temp[i] = rand.nextInt(10000);
+    }
+    radixsort(temp);
+    System.out.println(Arrays.toString(temp));
+  }
 
-  
+
 }
